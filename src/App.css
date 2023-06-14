@@ -108,7 +108,7 @@ button {
   gap: 20px 2%;
 }
 
-.do-item {
+.todo-item {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(4, 1fr);
@@ -124,7 +124,7 @@ button {
   font-size: 1.1rem;
 }
 
-.do-item h3 {
+.todo-item h3 {
   grid-column: 1 / 6;
   grid-row: 1 / 2;
   align-self: center;
@@ -132,7 +132,7 @@ button {
   font-size: 1.4rem;
 }
 
-.do-item p {
+.todo-item p {
   grid-column: 1 / 6;
   grid-row: 2 / 4;
   align-self: center;
