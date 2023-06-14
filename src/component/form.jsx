@@ -1,9 +1,9 @@
 import { React, useState } from "react";
-import Button from "./button";
+import data from "../module/localStorage";
 
 const INITIAL = { title: "", content: "", id: 1, isDone: false };
 
-const Form = ({ todoList, setTodoLIst }) => {
+const Form = ({ todoList, setTodoList }) => {
   const [todo, setTodo] = useState(INITIAL);
 
   const todoId = todoList.length > 0 ? todoList[todoList.length - 1].id + 1 : 1;
@@ -13,11 +13,7 @@ const Form = ({ todoList, setTodoLIst }) => {
 
     const newTodoList = [...todoList, { ...todo, id: todoId }];
 
-    localStorage.setItem("todo", JSON.stringify(newTodoList));
-
-    const loadTodoList = JSON.parse(localStorage.getItem("todo"));
-
-    setTodoLIst(loadTodoList);
+    setTodoList(data(newTodoList));
     setTodo(INITIAL);
   };
 
@@ -38,7 +34,7 @@ const Form = ({ todoList, setTodoLIst }) => {
     <form className="write-form" onSubmit={onSubmitHandler}>
       제목 <input {...inputTag("title")} />
       내용 <input {...inputTag("content")} />
-      <Button className={"write-button"}>추가하기</Button>
+      <button className="write-button">추가하기</button>
     </form>
   );
 };
