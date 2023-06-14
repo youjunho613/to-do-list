@@ -9,6 +9,8 @@ const App = () => {
     { title: "", content: "", id: 1, isDone: false },
   ]);
 
+  // 새로고침 해도 값이 유지되는 기능
+  // LocalStorage 이용
   return (
     <div className="html-style">
       <Header>My Todo List</Header>
