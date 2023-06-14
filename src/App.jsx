@@ -5,9 +5,10 @@ import Main from "component/main";
 import "App.css";
 
 const App = () => {
-  const [todoList, setTodoLIst] = useState([
-    { title: "", content: "", id: 1, isDone: false },
-  ]);
+  const [todoList, setTodoLIst] = useState(() => {
+    const data = localStorage.getItem("todo") || [];
+    return JSON.parse(data);
+  });
 
   return (
     <div className="html-style">

@@ -4,7 +4,11 @@ import Button from "./button";
 const Todo = ({ item, todoList, setTodoLIst }) => {
   const ClickDeleteHandler = (id) => {
     const newTodoList = todoList.filter((item) => item.id !== id);
-    setTodoLIst(newTodoList);
+
+    localStorage.setItem("todo", JSON.stringify(newTodoList));
+    const loadTodoList = JSON.parse(localStorage.getItem("todo"));
+
+    setTodoLIst(loadTodoList);
   };
 
   const ClickDoneHandler = (id) => {
@@ -18,7 +22,11 @@ const Todo = ({ item, todoList, setTodoLIst }) => {
         return { ...todo };
       }
     });
-    setTodoLIst(newTodoList);
+
+    localStorage.setItem("todo", JSON.stringify(newTodoList));
+    const loadTodoList = JSON.parse(localStorage.getItem("todo"));
+
+    setTodoLIst(loadTodoList);
   };
 
   return (
