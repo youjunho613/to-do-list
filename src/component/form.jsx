@@ -1,4 +1,5 @@
 import { React, useState } from "react";
+import Button from "./button";
 
 const Form = ({ todoList, setTodoLIst }) => {
   const initial = { title: "", content: "", id: 1, isDone: false };
@@ -31,7 +32,7 @@ const Form = ({ todoList, setTodoLIst }) => {
     <form className="write-form" onSubmit={onSubmitHandler}>
       제목 <input {...inputTag("title")} />
       내용 <input {...inputTag("content")} />
-      <button className={"write-button"}>추가하기</button>
+      <Button className={"write-button"}>추가하기</Button>
     </form>
   );
 };
