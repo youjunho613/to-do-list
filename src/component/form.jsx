@@ -1,18 +1,24 @@
 import { React, useState } from "react";
 import Button from "./button";
 
-const Form = ({ todoList, setTodoLIst }) => {
-  const initial = { title: "", content: "", id: 1, isDone: false };
-  const [todo, setTodo] = useState(initial);
+const INITIAL = { title: "", content: "", id: 1, isDone: false };
 
-  // id 값 부여
+const Form = ({ todoList, setTodoLIst }) => {
+  const [todo, setTodo] = useState(INITIAL);
+
   const todoId = todoList.length > 0 ? todoList[todoList.length - 1].id + 1 : 1;
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
 
-    setTodoLIst([...todoList, { ...todo, id: todoId }]);
-    setTodo(initial);
+    const newTodoList = [...todoList, { ...todo, id: todoId }];
+
+    localStorage.setItem("todo", JSON.stringify(newTodoList));
+
+    const loadTodoList = JSON.parse(localStorage.getItem("todo"));
+
+    setTodoLIst(loadTodoList);
+    setTodo(INITIAL);
   };
 
   const inputTag = (name) => ({
