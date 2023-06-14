@@ -4,6 +4,9 @@ import Todo from "./todo";
 const TodoList = ({ todoList, setTodoLIst }) => {
   // const newTodoList =
 
+  /**
+   * @todo 가독성 떨어짐
+   */
   return (
     <main>
       <h2 className="list-title">Ing..</h2>

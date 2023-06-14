@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./button";
 
 const Todo = ({ item, todoList, setTodoLIst }) => {
   const ClickDeleteHandler = (id) => {
@@ -6,7 +7,7 @@ const Todo = ({ item, todoList, setTodoLIst }) => {
     setTodoLIst(newTodoList);
   };
 
-  const onClickDoneHandler = (id) => {
+  const ClickDoneHandler = (id) => {
     const newTodoList = todoList.map((todo) => {
       if (todo.id === id) {
         return {
@@ -24,22 +25,18 @@ const Todo = ({ item, todoList, setTodoLIst }) => {
     <li className="todo-item" key={item.id} id={item.id}>
       <h3>{item.title}</h3>
       <p>{item.content}</p>
-      <button
-        className="list-delete-button"
-        onClick={() => {
-          ClickDeleteHandler(item.id);
-        }}
+      <Button
+        className={"list-delete-button"}
+        func={() => ClickDeleteHandler(item.id)}
       >
         삭제
-      </button>
-      <button
-        className="list-done-button"
-        onClick={() => {
-          onClickDoneHandler(item.id);
-        }}
+      </Button>
+      <Button
+        className={"list-done-button"}
+        func={() => ClickDoneHandler(item.id)}
       >
         완료
-      </button>
+      </Button>
     </li>
   );
 };
