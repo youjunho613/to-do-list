@@ -1,21 +1,20 @@
 import { React, useState } from "react";
 import Header from "component/header";
 import Form from "component/form";
-import Main from "component/main";
+import Main from "page/main";
 import "App.css";
 
 const App = () => {
-  const [todoList, setTodoLIst] = useState([
-    { title: "", content: "", id: 1, isDone: false },
-  ]);
+  const [todoList, setTodoList] = useState(() => {
+    const data = JSON.parse(localStorage.getItem("todo")) || [];
+    return data;
+  });
 
-  // 새로고침 해도 값이 유지되는 기능
-  // LocalStorage 이용
   return (
     <div className="html-style">
       <Header>My Todo List</Header>
-      <Form todoList={todoList} setTodoLIst={setTodoLIst} />
-      <Main todoList={todoList} setTodoLIst={setTodoLIst} />
+      <Form todoList={todoList} setTodoList={setTodoList} />
+      <Main todoList={todoList} setTodoList={setTodoList} />
     </div>
   );
 };

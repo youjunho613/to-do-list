@@ -1,44 +1,43 @@
 import React from "react";
-import Button from "./button";
+import data from "../module/localStorage";
 
-const Todo = ({ item, todoList, setTodoLIst }) => {
-  const ClickDeleteHandler = (id) => {
+const Todo = ({ boolean, todoList, setTodoList }) => {
+  const clickDeleteHandler = (id) => {
     const newTodoList = todoList.filter((item) => item.id !== id);
-    setTodoLIst(newTodoList);
+
+    setTodoList(data(newTodoList));
   };
 
-  const ClickDoneHandler = (id) => {
+  const clickDoneHandler = (id) => {
     const newTodoList = todoList.map((todo) => {
-      if (todo.id === id) {
-        return {
-          ...todo,
-          isDone: !todo.isDone,
-        };
-      } else {
-        return { ...todo };
-      }
+      return todo.id === id ? { ...todo, isDone: !todo.isDone } : todo;
     });
-    setTodoLIst(newTodoList);
+
+    setTodoList(data(newTodoList));
   };
 
-  return (
-    <li className="todo-item" key={item.id} id={item.id}>
-      <h3>{item.title}</h3>
-      <p>{item.content}</p>
-      <Button
-        className={"list-delete-button"}
-        func={() => ClickDeleteHandler(item.id)}
-      >
-        삭제
-      </Button>
-      <Button
-        className={"list-done-button"}
-        func={() => ClickDoneHandler(item.id)}
-      >
-        완료
-      </Button>
-    </li>
-  );
+  const filterList = todoList.filter((item) => item.isDone === boolean);
+
+  return filterList.map((item) => {
+    return (
+      <li className="todo-item" key={item.id} id={item.id}>
+        <h3>{item.title}</h3>
+        <p>{item.content}</p>
+        <button
+          className="list-delete-button"
+          onClick={() => clickDeleteHandler(item.id)}
+        >
+          삭제
+        </button>
+        <button
+          className="list-done-button"
+          onClick={() => clickDoneHandler(item.id)}
+        >
+          완료
+        </button>
+      </li>
+    );
+  });
 };
 
 export default Todo;

@@ -1,18 +1,20 @@
 import { React, useState } from "react";
-import Button from "./button";
+import data from "../module/localStorage";
 
-const Form = ({ todoList, setTodoLIst }) => {
-  const initial = { title: "", content: "", id: 1, isDone: false };
-  const [todo, setTodo] = useState(initial);
+const INITIAL = { title: "", content: "", id: 1, isDone: false };
 
-  // id 값 부여
+const Form = ({ todoList, setTodoList }) => {
+  const [todo, setTodo] = useState(INITIAL);
+
   const todoId = todoList.length > 0 ? todoList[todoList.length - 1].id + 1 : 1;
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
 
-    setTodoLIst([...todoList, { ...todo, id: todoId }]);
-    setTodo(initial);
+    const newTodoList = [...todoList, { ...todo, id: todoId }];
+
+    setTodoList(data(newTodoList));
+    setTodo(INITIAL);
   };
 
   const inputTag = (name) => ({
@@ -32,7 +34,7 @@ const Form = ({ todoList, setTodoLIst }) => {
     <form className="write-form" onSubmit={onSubmitHandler}>
       제목 <input {...inputTag("title")} />
       내용 <input {...inputTag("content")} />
-      <Button className={"write-button"}>추가하기</Button>
+      <button className="write-button">추가하기</button>
     </form>
   );
 };
