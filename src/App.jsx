@@ -13,7 +13,7 @@ const App = () => {
     <div className="html-style">
       <Header>My Todo List</Header>
       <Form todoList={todoList} setTodoLIst={setTodoLIst} />
-      <Main />
+      <Main todoList={todoList} setTodoLIst={setTodoLIst} />
     </div>
   );
 };
