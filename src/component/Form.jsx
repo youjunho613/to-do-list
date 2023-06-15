@@ -32,8 +32,14 @@ const Form = ({ todoList, setTodoList }) => {
 
   return (
     <form className="write-form" onSubmit={onSubmitHandler}>
-      제목 <input {...inputTag("title")} />
-      내용 <input {...inputTag("content")} />
+      <label className="write-label" htmlFor="title">
+        제목
+      </label>
+      <input {...inputTag("title")} />
+      <label className="write-label" htmlFor="content">
+        내용
+      </label>
+      <input {...inputTag("content")} />
       <button className="write-button">추가하기</button>
     </form>
   );
