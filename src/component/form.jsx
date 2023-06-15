@@ -1,5 +1,5 @@
-import { React, useState } from "react";
-import data from "../module/localStorage";
+import { useState } from "react";
+import getListData from "../module/localStorage";
 
 const INITIAL = { title: "", content: "", id: 1, isDone: false };
 
@@ -13,7 +13,7 @@ const Form = ({ todoList, setTodoList }) => {
 
     const newTodoList = [...todoList, { ...todo, id: todoId }];
 
-    setTodoList(data(newTodoList));
+    setTodoList(getListData(newTodoList));
     setTodo(INITIAL);
   };
 

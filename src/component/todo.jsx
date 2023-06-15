@@ -1,11 +1,10 @@
-import React from "react";
-import data from "../module/localStorage";
+import getListData from "../module/localStorage";
 
 const Todo = ({ boolean, todoList, setTodoList }) => {
   const clickDeleteHandler = (id) => {
     const newTodoList = todoList.filter((item) => item.id !== id);
 
-    setTodoList(data(newTodoList));
+    setTodoList(getListData(newTodoList));
   };
 
   const clickDoneHandler = (id) => {
@@ -13,7 +12,11 @@ const Todo = ({ boolean, todoList, setTodoList }) => {
       return todo.id === id ? { ...todo, isDone: !todo.isDone } : todo;
     });
 
-    setTodoList(data(newTodoList));
+    localStorage.setItem("todoList", JSON.stringify(newTodoList));
+
+    const loadTodoList = JSON.parse(localStorage.getItem("todoList"));
+
+    setTodoList(loadTodoList);
   };
 
   const filterList = todoList.filter((item) => item.isDone === boolean);

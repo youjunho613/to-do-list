@@ -1,14 +1,13 @@
-import { React, useState } from "react";
-import Header from "component/header";
-import Form from "component/form";
-import Main from "page/main";
+import { useState } from "react";
+import Header from "component/Header";
+import Form from "component/Form";
+import Main from "page/Main";
 import "App.css";
 
 const App = () => {
-  const [todoList, setTodoList] = useState(() => {
-    const data = JSON.parse(localStorage.getItem("todo")) || [];
-    return data;
-  });
+  const [todoList, setTodoList] = useState(
+    JSON.parse(localStorage.getItem("todoList")) || []
+  );
 
   return (
     <div className="html-style">

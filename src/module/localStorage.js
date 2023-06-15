@@ -1,8 +1,9 @@
-export const data = (pram) => {
-  localStorage.setItem("todo", JSON.stringify(pram));
+const getListData = (pram) => {
+  localStorage.setItem("todoList", JSON.stringify(pram));
 
-  const loadTodoList = JSON.parse(localStorage.getItem("todo"));
+  const loadTodoList = JSON.parse(localStorage.getItem("todoList"));
   return loadTodoList;
 };
 
-export default data;
+// 차이점
+export default getListData;
