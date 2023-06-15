@@ -12,11 +12,7 @@ const Todo = ({ boolean, todoList, setTodoList }) => {
       return todo.id === id ? { ...todo, isDone: !todo.isDone } : todo;
     });
 
-    localStorage.setItem("todoList", JSON.stringify(newTodoList));
-
-    const loadTodoList = JSON.parse(localStorage.getItem("todoList"));
-
-    setTodoList(loadTodoList);
+    setTodoList(getListData(newTodoList));
   };
 
   const filterList = todoList.filter((item) => item.isDone === boolean);
