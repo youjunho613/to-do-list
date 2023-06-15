@@ -82,6 +82,8 @@ button {
     minmax(calc((1 - 0.04) / 3 * 100%), 1fr)
   );
   gap: 20px 2%;
+
+  min-height: 220px;
 }
 
 .todo-item {
