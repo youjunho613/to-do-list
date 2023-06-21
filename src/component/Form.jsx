@@ -11,7 +11,7 @@ const Form = () => {
   const [todo, setTodo] = useState(INITIAL);
 
   // Redux
-  const { todoList } = useSelector((state) => state.todoList);
+  const { todoList } = useSelector(state => state.todoList);
   const dispatch = useDispatch();
 
   // Ref로 인풋 태그 링크
@@ -23,21 +23,19 @@ const Form = () => {
     titleRef.current.focus();
   }, []);
 
-  const onChangeHandler = (event) => {
+  const onChangeHandler = event => {
     const { name, value } = event.target;
     setTodo({ ...todo, [name]: value });
   };
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = event => {
     event.preventDefault();
 
     // 1. input 유효성 검사
-    if (titleRef.current.value === "" || contentRef.current.value === "")
-      return;
+    if (titleRef.current.value === "" || contentRef.current.value === "") return;
 
     // 2. id 값 유효성
-    const todoId =
-      todoList.length > 0 ? todoList[todoList.length - 1].id + 1 : 1;
+    const todoId = todoList.length > 0 ? todoList[todoList.length - 1].id + 1 : 1;
 
     // 3. 모듈로 이벤트 넘겨서 추가 기능 구현
     dispatch(addTodo({ ...todo, id: todoId }));
@@ -49,10 +47,10 @@ const Form = () => {
     // setTodoList(getListData(newTodoList));
   };
 
-  const inputTag = (name) => ({
+  const inputTag = name => ({
     name,
     value: todo[name],
-    onChange: onChangeHandler,
+    onChange: onChangeHandler
   });
 
   return (

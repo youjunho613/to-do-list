@@ -5,41 +5,44 @@ import { deleteTodo, doneTodo } from "redux/modules/todoList";
 import { styled } from "styled-components";
 
 const Todo = ({ boolean }) => {
-  const { todoList } = useSelector((state) => state.todoList);
+  const { todoList } = useSelector(state => state.todoList);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const filterList = todoList.filter((item) => item.isDone === boolean);
+  const filterList = todoList.filter(item => item.isDone === boolean);
 
-  return filterList.map((item) => {
+  const buttonTag = (color, column, func, id) => {
+    const property = { color, column };
+    switch (func) {
+      case "delete":
+        return {
+          ...property,
+          onClick: () => {
+            if (window.confirm("정말 삭제하시겠습니까?")) dispatch(deleteTodo(id));
+          }
+        };
+      case "detail":
+        return {
+          ...property,
+          onClick: () => {
+            navigate(`/detail/${id}`);
+          }
+        };
+      case "done":
+        return { ...property, onClick: () => dispatch(doneTodo(id)) };
+      default:
+        return;
+    }
+  };
+
+  return filterList.map(item => {
     return (
       <StLi key={item.id} id={item.id}>
         <StTitle>{item.title}</StTitle>
         <StP>{item.content}</StP>
-        <StBtn
-          color="red"
-          column="1 / 3"
-          onClick={() => {
-            if (window.confirm("정말 삭제하시겠습니까?"))
-              return dispatch(deleteTodo(item.id));
-          }}
-        >
-          삭제
-        </StBtn>
-        <StBtn
-          color="purple"
-          column="4 / 8"
-          onClick={() => {
-            navigate(`/detail/${item.id}`);
-          }}
-        >
-          상세보기
-        </StBtn>
-        <StBtn
-          color="green"
-          column="9 / 11"
-          onClick={() => dispatch(doneTodo(item.id))}
-        >
+        <StBtn {...buttonTag("red", "1 / 3", "delete", item.id)}>삭제</StBtn>
+        <StBtn {...buttonTag("purple", "4 / 8", "detail", item.id)}>상세보기</StBtn>
+        <StBtn {...buttonTag("green", "9 / 11", "done", item.id)}>
           {item.isDone ? "취소" : "완료"}
         </StBtn>
       </StLi>
@@ -81,15 +84,15 @@ const StP = styled.p`
 
 const StBtn = styled.button`
   grid-row: 4 / 5;
-  grid-column: ${(props) => props.column};
+  grid-column: ${props => props.column};
 
-  border: 2px solid var(--color-${(props) => props.color});
+  border: 2px solid var(--color-${props => props.color});
   border-radius: 20px;
-  color: var(--color-${(props) => props.color});
+  color: var(--color-${props => props.color});
 
   transition: 500ms;
   &:hover {
-    background-color: var(--color-${(props) => props.color});
+    background-color: var(--color-${props => props.color});
     color: var(--color-white);
   }
 `;

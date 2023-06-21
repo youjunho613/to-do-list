@@ -1,5 +1,5 @@
-import { styled } from "styled-components";
 import Todo from "component/Todo";
+import { styled } from "styled-components";
 
 const Main = () => {
   return (
@@ -24,10 +24,7 @@ const StTitle = styled.h2`
 
 const StUl = styled.ul`
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(calc((1 - 0.04) / 3 * 100%), 1fr)
-  );
+  grid-template-columns: repeat(auto-fill, minmax(calc((1 - 0.04) / 3 * 100%), 1fr));
   gap: 20px 2%;
 
   min-height: 220px;

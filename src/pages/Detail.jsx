@@ -6,11 +6,9 @@ const Detail = () => {
   const navigate = useNavigate();
   const param = useParams();
 
-  const { todoList } = useSelector((state) => state.todoList);
+  const { todoList } = useSelector(state => state.todoList);
 
-  const { title, content, id, isDone } = todoList.find(
-    (item) => item.id === parseInt(param.id)
-  );
+  const { title, content, id, isDone } = todoList.find(item => item.id === parseInt(param.id));
 
   return (
     <StBox>
@@ -25,7 +23,7 @@ const Detail = () => {
           navigate("/");
         }}
       >
-        홈으로
+        이전으로
       </StHomeBtn>
     </StBox>
   );
@@ -54,7 +52,7 @@ const StDiv = styled.div`
 `;
 
 const StP = styled.p`
-  height: ${(props) => props.height};
+  height: ${props => props.height};
 
   margin: 30px 0px;
 

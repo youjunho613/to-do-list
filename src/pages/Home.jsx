@@ -13,7 +13,6 @@ const Home = () => {
     </StBox>
   );
 };
-// useParams 써보기
 
 const StBox = styled.div`
   max-width: 1200px;
