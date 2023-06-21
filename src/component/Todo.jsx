@@ -1,19 +1,10 @@
-import getListData from "../module/localStorage";
+// import getListData from "../module/localStorage";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteTodo, doneTodo } from "redux/modules/todoList";
 
-const Todo = ({ boolean, todoList, setTodoList }) => {
-  const clickDeleteHandler = (id) => {
-    const newTodoList = todoList.filter((item) => item.id !== id);
-
-    setTodoList(getListData(newTodoList));
-  };
-
-  const clickDoneHandler = (id) => {
-    const newTodoList = todoList.map((todo) => {
-      return todo.id === id ? { ...todo, isDone: !todo.isDone } : todo;
-    });
-
-    setTodoList(getListData(newTodoList));
-  };
+const Todo = ({ boolean }) => {
+  const { todoList } = useSelector((state) => state.todoList);
+  const dispatch = useDispatch();
 
   const filterList = todoList.filter((item) => item.isDone === boolean);
 
@@ -24,15 +15,15 @@ const Todo = ({ boolean, todoList, setTodoList }) => {
         <p>{item.content}</p>
         <button
           className="list-delete-button"
-          onClick={() => clickDeleteHandler(item.id)}
+          onClick={() => dispatch(deleteTodo(item.id))}
         >
           삭제
         </button>
         <button
           className="list-done-button"
-          onClick={() => clickDoneHandler(item.id)}
+          onClick={() => dispatch(doneTodo(item.id))}
         >
-          완료
+          {item.isDone ? "취소" : "완료"}
         </button>
       </li>
     );

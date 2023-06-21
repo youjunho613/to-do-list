@@ -1,5 +1,5 @@
-@import "./style/reset.css";
-@import "./style/color.css";
+@import "./reset.css";
+@import "./color.css";
 
 button {
   padding: 10px;
