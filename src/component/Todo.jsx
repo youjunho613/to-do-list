@@ -1,11 +1,13 @@
 // import getListData from "../module/localStorage";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { deleteTodo, doneTodo } from "redux/modules/todoList";
 import { styled } from "styled-components";
 
 const Todo = ({ boolean }) => {
   const { todoList } = useSelector((state) => state.todoList);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const filterList = todoList.filter((item) => item.isDone === boolean);
 
@@ -14,12 +16,32 @@ const Todo = ({ boolean }) => {
       <StLi key={item.id} id={item.id}>
         <StTitle>{item.title}</StTitle>
         <StP>{item.content}</StP>
-        <StDeleteBtn onClick={() => dispatch(deleteTodo(item.id))}>
+        <StBtn
+          color="red"
+          column="1 / 3"
+          onClick={() => {
+            if (window.confirm("정말 삭제하시겠습니까?"))
+              return dispatch(deleteTodo(item.id));
+          }}
+        >
           삭제
-        </StDeleteBtn>
-        <StDoneBtn onClick={() => dispatch(doneTodo(item.id))}>
+        </StBtn>
+        <StBtn
+          color="purple"
+          column="4 / 8"
+          onClick={() => {
+            navigate(`/detail/${item.id}`);
+          }}
+        >
+          상세보기
+        </StBtn>
+        <StBtn
+          color="green"
+          column="9 / 11"
+          onClick={() => dispatch(doneTodo(item.id))}
+        >
           {item.isDone ? "취소" : "완료"}
-        </StDoneBtn>
+        </StBtn>
       </StLi>
     );
   });
@@ -27,7 +49,7 @@ const Todo = ({ boolean }) => {
 
 const StLi = styled.li`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(4, 1fr);
   gap: 5px;
 
@@ -42,7 +64,7 @@ const StLi = styled.li`
 `;
 
 const StTitle = styled.h3`
-  grid-column: 1 / 6;
+  grid-column: 1 / 11;
   grid-row: 1 / 2;
   align-self: center;
 
@@ -50,39 +72,25 @@ const StTitle = styled.h3`
 `;
 
 const StP = styled.p`
-  grid-column: 1 / 6;
+  grid-column: 1/11;
   grid-row: 2 / 4;
   align-self: center;
 
   font-size: 1.1rem;
 `;
 
-const StDeleteBtn = styled.button`
+const StBtn = styled.button`
   grid-row: 4 / 5;
-  grid-column: 2 / 3;
+  grid-column: ${(props) => props.column};
 
-  border: 2px solid var(--color-red);
+  border: 2px solid var(--color-${(props) => props.color});
   border-radius: 20px;
-  color: var(--color-red);
+  color: var(--color-${(props) => props.color});
 
   transition: 500ms;
   &:hover {
-    border: 2px solid var(--color-red2);
-    color: var(--color-red2);
-  }
-`;
-const StDoneBtn = styled.button`
-  grid-row: 4 / 5;
-  grid-column: 4 / 5;
-
-  border: 2px solid var(--color-green);
-  border-radius: 20px;
-  color: var(--color-green);
-
-  transition: 500ms;
-  &:hover {
-    border: 2px solid var(--color-green2);
-    color: var(--color-green2);
+    background-color: var(--color-${(props) => props.color});
+    color: var(--color-white);
   }
 `;
 

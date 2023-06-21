@@ -44,7 +44,7 @@ const Form = () => {
 
     // 4. input 값 초기화
     setTodo(INITIAL);
-
+    titleRef.current.focus();
     // 로컬스토리지 구현
     // setTodoList(getListData(newTodoList));
   };

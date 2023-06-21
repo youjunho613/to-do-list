@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import Todo from "../component/Todo";
+import Todo from "component/Todo";
 
 const Main = () => {
   return (
