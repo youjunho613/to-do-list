@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { useRef } from "react";
 
 const Detail = () => {
   const navigate = useNavigate();
@@ -12,12 +11,6 @@ const Detail = () => {
   const { title, content, id, isDone } = todoList.find(
     (item) => item.id === parseInt(param.id)
   );
-
-  const btnRef = useRef();
-  // console.log(
-  //   "🚀 ~ file: Detail.jsx:19 ~ Detail ~ btnRef:",
-  //   (btnRef.current.outerHTML = null)
-  // );
 
   return (
     <StBox>
@@ -34,25 +27,6 @@ const Detail = () => {
       >
         홈으로
       </StHomeBtn>
-      <StMoveBtn
-        onClick={() => {
-          navigate(`/detail/${id - 1}`);
-        }}
-        ref={btnRef}
-        position={"left:0"}
-        translate={"-50%"}
-      >
-        {"<<"}
-      </StMoveBtn>
-      <StMoveBtn
-        onClick={() => {
-          navigate(`/detail/${id + 1}`);
-        }}
-        position={"right:0"}
-        translate={"50%"}
-      >
-        {">>"}
-      </StMoveBtn>
     </StBox>
   );
 };
@@ -107,27 +81,6 @@ const StHomeBtn = styled.button`
   &:hover {
     background-color: var(--color-purple);
     color: var(--color-white);
-  }
-`;
-
-const StMoveBtn = styled.button`
-  display: block;
-
-  position: absolute;
-
-  top: 50%;
-  ${(props) => props.position};
-
-  width: 50px;
-  height: 50px;
-
-  background-color: var(--color-yellow);
-
-  border-radius: 25px;
-  transform: translate(${(props) => props.translate}, -50%);
-  &:hover {
-    transform: translate(calc(${(props) => props.translate}* 1.5), -50%);
-    transition: 1s;
   }
 `;
 
