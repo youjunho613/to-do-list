@@ -7,7 +7,7 @@
   --color-gray7: rgb(0, 0, 0, 0.7);
   --color-black: rgb(0, 0, 0);
   --color-red: rgb(190, 0, 0);
-  --color-red2: rgb(100, 0, 0);
-  --color-green: rgb(0, 190, 0);
-  --color-green2: rgb(0, 100, 0);
+  --color-green: rgb(0, 100, 0);
+  --color-purple: rgb(170, 80, 170);
+  --color-yellow: rgb(230, 230, 0);
 }

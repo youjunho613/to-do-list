@@ -1,8 +1,9 @@
-const getListData = (todoList) => {
+export const setData = todoList => {
   localStorage.setItem("todoList", JSON.stringify(todoList));
-
-  const loadTodoList = JSON.parse(localStorage.getItem("todoList"));
-  return loadTodoList;
 };
 
-export default getListData;
+export const getData = () => {
+  const loadTodoList = JSON.parse(localStorage.getItem("todoList"));
+
+  return loadTodoList;
+};

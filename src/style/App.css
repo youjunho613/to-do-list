@@ -1,0 +1,9 @@
+@import "./reset.css";
+@import "./color.css";
+
+button {
+  padding: 10px;
+
+  font-size: 1rem;
+  line-height: 1rem;
+}
