@@ -2,26 +2,21 @@ import { useRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "redux/modules/todoList";
 import styled from "styled-components";
-// import getListData from "../module/localStorage";
 
 const INITIAL = { title: "", content: "", id: 1, isDone: false };
 
 const Form = () => {
-  // useState
-  const [todo, setTodo] = useState(INITIAL);
+  const [todo, setTodo] = useState(INITIAL); // useState
 
-  // Redux
-  const { todoList } = useSelector(state => state.todoList);
+  const { todoList } = useSelector(state => state.todoList); // Redux
   const dispatch = useDispatch();
 
-  // Ref로 인풋 태그 링크
-  const titleRef = useRef("");
+  const titleRef = useRef(""); // Ref로 인풋 태그 링크
   const contentRef = useRef("");
 
-  // title input 포커스 해주기 ---- Effect로 렌더링 될 때 한번만 실행
   useEffect(() => {
     titleRef.current.focus();
-  }, []);
+  }, []); // title input 포커스 해주기 ---- Effect로 렌더링 될 때 한번만 실행
 
   const onChangeHandler = event => {
     const { name, value } = event.target;
@@ -30,21 +25,14 @@ const Form = () => {
 
   const onSubmitHandler = event => {
     event.preventDefault();
+    if (titleRef.current.value === "" || contentRef.current.value === "") return; // input 유효성 검사
+    const todoId = todoList.length > 0 ? todoList[todoList.length - 1].id + 1 : 1; // id 값 유효성
 
-    // 1. input 유효성 검사
-    if (titleRef.current.value === "" || contentRef.current.value === "") return;
+    dispatch(addTodo({ ...todo, id: todoId })); // 모듈로 추가 이벤트 넘겨서 구현
 
-    // 2. id 값 유효성
-    const todoId = todoList.length > 0 ? todoList[todoList.length - 1].id + 1 : 1;
+    setTodo(INITIAL); // input 값 초기화
 
-    // 3. 모듈로 이벤트 넘겨서 추가 기능 구현
-    dispatch(addTodo({ ...todo, id: todoId }));
-
-    // 4. input 값 초기화
-    setTodo(INITIAL);
-    titleRef.current.focus();
-    // 로컬스토리지 구현
-    // setTodoList(getListData(newTodoList));
+    titleRef.current.focus(); // input 커서 위치
   };
 
   const inputTag = name => ({

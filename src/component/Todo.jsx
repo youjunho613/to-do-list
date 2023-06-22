@@ -1,4 +1,3 @@
-// import getListData from "../module/localStorage";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteTodo, doneTodo } from "redux/modules/todoList";
@@ -17,9 +16,7 @@ const Todo = ({ boolean }) => {
       case "delete":
         return {
           ...property,
-          onClick: () => {
-            if (window.confirm("정말 삭제하시겠습니까?")) dispatch(deleteTodo(id));
-          }
+          onClick: () => (window.confirm("정말 삭제하시겠습니까?") ? dispatch(deleteTodo(id)) : "")
         };
       case "detail":
         return {

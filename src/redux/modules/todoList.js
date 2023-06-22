@@ -1,3 +1,5 @@
+import { getData, setData } from "modules/localStorage";
+
 // action value
 const ADD_TODO = "App/todoList/ADD";
 const DELETE_TODO = "App/todoList/DELETE";
@@ -14,27 +16,28 @@ export const doneTodo = payload => {
   return { type: DONE_TODO, payload };
 };
 
-const initialState = { todoList: [] };
-
+const initialState = getData();
 const todoList = (state = initialState, action) => {
+  const actionAdd = { todoList: [...state.todoList, action.payload] };
+
+  const actionDelete = { todoList: state.todoList.filter(item => item.id !== action.payload) };
+
+  const actionDone = {
+    todoList: state.todoList.map(item => {
+      return item.id === action.payload ? { ...item, isDone: !item.isDone } : item;
+    })
+  };
+
   switch (action.type) {
     case ADD_TODO:
-      return {
-        ...state,
-        todoList: [...state.todoList, action.payload]
-      };
+      setData(actionAdd);
+      return actionAdd;
     case DELETE_TODO:
-      return {
-        ...state,
-        todoList: state.todoList.filter(item => item.id !== action.payload)
-      };
+      setData(actionDelete);
+      return actionDelete;
     case DONE_TODO:
-      return {
-        ...state,
-        todoList: state.todoList.map(item => {
-          return item.id === action.payload ? { ...item, isDone: !item.isDone } : item;
-        })
-      };
+      setData(actionDone);
+      return actionDone;
     default:
       return state;
   }
