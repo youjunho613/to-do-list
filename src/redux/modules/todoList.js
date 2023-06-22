@@ -16,7 +16,10 @@ export const doneTodo = payload => {
   return { type: DONE_TODO, payload };
 };
 
-const initialState = getData();
+// initial value
+const initialState = getData() || { todoList: [] };
+
+//redux
 const todoList = (state = initialState, action) => {
   const actionAdd = { todoList: [...state.todoList, action.payload] };
 
@@ -31,13 +34,14 @@ const todoList = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TODO:
       setData(actionAdd);
-      return actionAdd;
+      return { ...state, ...actionAdd };
+    // ...state 현재는 값이 한 개지만 여러개가 있을 경우 불변성을 유지해줌
     case DELETE_TODO:
       setData(actionDelete);
-      return actionDelete;
+      return { ...state, ...actionDelete };
     case DONE_TODO:
       setData(actionDone);
-      return actionDone;
+      return { ...state, ...actionDone };
     default:
       return state;
   }
