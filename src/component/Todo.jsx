@@ -8,16 +8,16 @@ const Todo = ({ boolean }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const filterList = todoList.filter(item => item.isDone === boolean);
-
   const buttonTag = (color, column, func, id) => {
     const property = { color, column };
+
     switch (func) {
       case "delete":
         return {
           ...property,
           onClick: () => (window.confirm("정말 삭제하시겠습니까?") ? dispatch(deleteTodo(id)) : "")
         };
+
       case "detail":
         return {
           ...property,
@@ -25,12 +25,15 @@ const Todo = ({ boolean }) => {
             navigate(`/detail/${id}`);
           }
         };
+
       case "done":
         return { ...property, onClick: () => dispatch(doneTodo(id)) };
       default:
         return;
     }
   };
+
+  const filterList = todoList.filter(item => item.isDone === boolean);
 
   return filterList.map(item => {
     return (
