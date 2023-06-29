@@ -1,33 +1,20 @@
 import Todo from "component/Todo";
-import { styled } from "styled-components";
+import * as St from "./Main.style.js";
 
 const Main = () => {
   return (
     <main>
-      <StTitle>Ing..</StTitle>
-      <StUl>
+      <St.Title>Ing..</St.Title>
+
+      <St.Ul>
         <Todo boolean={false} />
-      </StUl>
-      <StTitle>Done..</StTitle>
-      <StUl>
+      </St.Ul>
+      <St.Title>Done..</St.Title>
+      <St.Ul>
         <Todo boolean={true} />
-      </StUl>
+      </St.Ul>
     </main>
   );
 };
-
-const StTitle = styled.h2`
-  margin: 25px 0 25px 0;
-
-  font-size: 2.2rem;
-`;
-
-const StUl = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(calc((1 - 0.04) / 3 * 100%), 1fr));
-  gap: 20px 2%;
-
-  min-height: 220px;
-`;
 
 export default Main;

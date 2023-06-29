@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "redux/modules/todoList";
-import styled from "styled-components";
+import * as St from "./Form.style.js";
 
 const INITIAL = { title: "", content: "", id: 1, isDone: false };
 
@@ -42,64 +42,15 @@ const Form = () => {
   });
 
   return (
-    <StForm onSubmit={onSubmitHandler}>
-      <StLabel htmlFor="title">제목</StLabel>
-      <StInput {...inputTag("title")} ref={titleRef} />
-      <StLabel htmlFor="content">내용</StLabel>
-      <StInput {...inputTag("content")} ref={contentRef} />
-      <StButton>추가하기</StButton>
-    </StForm>
+    <St.Form onSubmit={onSubmitHandler}>
+      <St.Label htmlFor="title">제목</St.Label>
+      <St.Input {...inputTag("title")} ref={titleRef} />
+      <St.Label htmlFor="content">내용</St.Label>
+      <St.Input {...inputTag("content")} ref={contentRef} />
+      <St.Button>추가하기</St.Button>
+      <button type={"radio"}> </button>
+    </St.Form>
   );
 };
-
-const StForm = styled.form`
-  width: 97%;
-  height: 70px;
-
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  margin: 50px auto;
-
-  background-color: var(--color-gray1);
-  border-radius: 35px;
-`;
-
-const StLabel = styled.label`
-  font-size: 1.7rem;
-`;
-
-const StInput = styled.input`
-  width: 30%;
-
-  outline: none;
-  background-color: var(--color-gray1);
-  border: 0;
-  border-radius: 20px;
-
-  padding: 10px;
-
-  font-size: 1.5rem;
-
-  &:focus {
-    background-color: var(--color-gray2);
-  }
-`;
-
-const StButton = styled.button`
-  height: 60%;
-
-  background-color: var(--color-gray7);
-  border-radius: 20px;
-
-  color: var(--color-white);
-
-  &:hover {
-    background-color: var(--color-gray2);
-    color: var(--color-black);
-    transition: 0.7s;
-  }
-`;
 
 export default Form;

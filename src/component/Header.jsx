@@ -1,11 +1,7 @@
-import styled from "styled-components";
+import * as St from "./Header.style.js";
 
 const Header = ({ children }) => {
-  return <StBox>{children}</StBox>;
+  return <St.Box>{children}</St.Box>;
 };
-
-const StBox = styled.h1`
-  font-size: 2.5rem;
-`;
 
 export default Header;
