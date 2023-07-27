@@ -1,6 +1,18 @@
 # To-do List
 
-개인 프로젝트 과제 제출 예정입니다.
+개인 프로젝트 과제
+
+React
+
+todo-list
+
+06/13 ~ 06/15 react CRUD & router
+
+06/21 ~ 06/23 state => Redux로 변환
+
+06/29 (선발대) global style로 다크모드 만들기 + (style component 분리)
+
+07/27 ~ ing typescript 리팩토링
 
 ## React
 
@@ -8,7 +20,7 @@
 
 ## 컴포넌트
 
-### 컴포넌트는 자유롭게 나누되, 그렇게 나눈 사유에 대하여 README에 작성하세요.
+### 컴포넌트 나눈 사유
 
 ./src/component
 
