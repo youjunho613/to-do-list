@@ -1,21 +1,25 @@
-export const dark = {
-  backgroundColor: "var(--color-black)",
-  color: "var(--color-white)"
-};
-export const light = {
-  backgroundColor: "var(--color-white)",
-  color: "var(--color-black)"
-};
+import { colors } from "./colors";
 
-export const small = {
-  fontSize: "medium",
-  fontWeight: "500"
-};
-export const medium = {
-  fontSize: "large",
-  fontWeight: "600"
-};
-export const large = {
-  fontSize: "x-large",
-  fontWeight: "700"
+export const theme = {
+  mode: "light",
+  dark: {
+    backgroundColor: colors.dark,
+    color: colors.light
+  },
+  light: {
+    backgroundColor: colors.light,
+    color: colors.dark
+  },
+  small: {
+    fontSize: "16px",
+    fontWeight: "500"
+  },
+  medium: {
+    fontSize: "20px",
+    fontWeight: "600"
+  },
+  large: {
+    fontSize: "24px",
+    fontWeight: "700"
+  }
 };

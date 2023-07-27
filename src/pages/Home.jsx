@@ -2,7 +2,6 @@ import Header from "component/Header";
 import Form from "component/Form";
 import Main from "component/Main";
 import styled from "styled-components";
-import "../style/App.css";
 
 const Home = () => {
   return (
